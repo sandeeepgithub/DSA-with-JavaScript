@@ -172,6 +172,35 @@ class DoublyLinkedList {
     return removalNode;
   }
 
+  reverse() {
+    var temp = null;
+    var current = this.head;
+
+    while (current != null) {
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+      current = current.prev;
+    }
+
+    if (temp != null) {
+      this.head = temp.prev;
+    }
+
+    return this;
+  }
+
+  toArray() {
+    let arr = [];
+    let curr = this.head;
+    while (curr) {
+      arr.push(curr.val);
+      curr = curr.next;
+    }
+
+    return arr;
+  }
+
   multiplePush(val) {
     for (let i = 0; i < val; i++) {
       this.push(`${i}`);
